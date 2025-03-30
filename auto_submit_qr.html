@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrando...</title>
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const tarjeta = params.get("tarjeta");
+
+      if (tarjeta) {
+        // Crear formulario y enviarlo automáticamente
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "https://docs.google.com/forms/d/e/1FAIpQLSegzTtlrBLKD8WEcANXm5-T3uPcbjWF4yMM2ArSBonW31vMXg/formResponse";
+
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "entry.1180496003"; // Entry ID para "Número de tarjeta"
+        input.value = tarjeta;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+
+        document.body.innerHTML = `<h2>Tarjeta ${tarjeta} registrada con éxito.</h2>`;
+      } else {
+        document.body.innerHTML = "<h2>Error: Número de tarjeta no encontrado.</h2>";
+      }
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>
