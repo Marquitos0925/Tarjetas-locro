@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrando Tarjeta...</title>
+    <script>
+        window.onload = function() {
+            // Obtener el número de tarjeta de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const tarjeta = urlParams.get('tarjeta');
+            
+            if (tarjeta) {
+                // URL del formulario de Google con el número prellenado
+                const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSc123ABCXYZ/formResponse?entry=Hvn9fb.zHQkBf&submit=Submit&entry=tarjeta=${tarjeta}`;
+                
+                // Crear y enviar un formulario invisible
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = formUrl;
+                document.body.appendChild(form);
+                form.submit();
+
+                // Mostrar mensaje de confirmación después de redirigir
+                document.body.innerHTML = '<h2>Tarjeta ' + tarjeta + ' registrada con éxito.</h2>';
+            } else {
+                document.body.innerHTML = '<h2>Error: No se encontró número de tarjeta.</h2>';
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
